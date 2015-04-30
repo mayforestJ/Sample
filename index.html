@@ -99,10 +99,10 @@
     }
     
     function uploadPic(){
-       alert("trying t upload");
        var options = new FileUploadOptions();
        options.fileKey="file";
        options.fileName=imageString.substr(imageString.lastIndexOf('/')+1);
+       alert("uploading, name : "+options.fileName);
        options.mimeType="image/jpeg";
 
        var params = new Object();
@@ -110,17 +110,17 @@
        params.value2 = "param";
 
        options.params = params;
-
+       
        var ft = new FileTransfer();
        ft.upload(imageString, "http://www.springbaystudio.com/tree/upload.php", win, fail, options);
        
     }
 
-    function win(){
+    function win(result){
         alert("upload done.");
     }
     
-    function fail(){
+    function fail(error){
         alert("uploading pic fails");
     }
     </script>
