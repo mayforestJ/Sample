@@ -18,5 +18,5 @@
     </author>
 
     <!-- We'll include the Barcode plugin as an example -->
-    <gap:plugin name="org.apache.cordova.camera" />
+    <gap:plugin name="org.apache.cordova.camera" version="0.3.2" />
 </widget>
