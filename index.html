@@ -2,13 +2,14 @@
 <html>
   <head>
     <title>Capture Photo</title>
-
+    <link rel="stylesheet" href="main.css">
+    
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
 
     var pictureSource;   // picture source
     var destinationType; // sets the format of returned value
-
+    var imageString;     // store the image to be uploaded   
     // Wait for device API libraries to load
     //
     document.addEventListener("deviceready",onDeviceReady,false);
@@ -38,6 +39,11 @@
       // The in-line CSS rules are used to resize the image
       //
       smallImage.src = "data:image/jpeg;base64," + imageData;
+      
+      // show the uploadbtn:
+      var btn =document.getElementById('uploadBtn');
+      btn.style.display ='block';
+      imageString = imageData;
     }
 
     // Called when a photo is successfully retrieved
@@ -90,15 +96,42 @@
     function onFail(message) {
       alert('Failed because: ' + message);
     }
+    
+    function uploadPic(){
+       var options = new FileUploadOptions();
+       options.fileKey="file";
+       options.fileName=imageString.substr(imageString.lastIndexOf('/')+1);
+       options.mimeType="image/jpeg";
 
+       var params = new Object();
+       params.value1 = "test";
+       params.value2 = "param";
+
+       options.params = params;
+
+       var ft = new FileTransfer();
+       ft.upload(imageString, "http://www.springbaystudio.com/tree/upload.php", win, fail, options);
+       
+    }
+
+    function win(){
+        console.log("upload done.");
+    }
+    
+    function fail(){
+        console.log("uploading pic fails");
+    }
     </script>
   </head>
   <body>
-    <button onclick="capturePhoto();">Capture Photo</button> <br>
-    <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
-    <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
-    <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
-    <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-    <img style="display:none;" id="largeImage" src="" />
+    <div id="button-group">
+        <button onclick="capturePhoto();">Capture Photo</button> <br>
+        <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
+        <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+        <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
+        <button onclick="uploadPic();" style="display:none;" id="uploadBtn">Upload Pic</button>    
+        <img style="display:none;width:120px;height:120px;" id="smallImage" src="" />
+        <img style="display:none;" id="largeImage" src="" />
+    </div>
   </body>
 </html>
