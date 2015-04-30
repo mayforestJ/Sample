@@ -41,10 +41,10 @@
       smallImage.src = "data:image/jpeg;base64," + imageData;
       
       // show the uploadbtn:
-      var btn =document.getElementById('uploadBtn');
+      //var btn =document.getElementById('uploadBtn');
 //      btn.style.display ='block';
       imageString = imageData;
-      alert(btn +"has listener now.");
+      //alert(btn +"has listener now.");
     }
 
     // Called when a photo is successfully retrieved
@@ -99,7 +99,7 @@
     }
     
     function uploadPic(){
-       alter("trying t upload");
+       alert("trying t upload");
        var options = new FileUploadOptions();
        options.fileKey="file";
        options.fileName=imageString.substr(imageString.lastIndexOf('/')+1);
@@ -131,7 +131,7 @@
         <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
         <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
         <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br><br>
-        <button onclick="uploadPic();" id="uploadBtn">Upload Pic</button><br><br><br>
+        <button onclick="uploadPic();">Upload Pic</button><br><br><br>
         
         <img style="display:none;width:120px;height:120px;" id="smallImage" src="" />
         <img style="display:none;" id="largeImage" src="" />
