@@ -43,9 +43,8 @@
       // show the uploadbtn:
       var btn =document.getElementById('uploadBtn');
 //      btn.style.display ='block';
-      btn.addEventListener("click",uploadPic);
       imageString = imageData;
-      alert(uploadBtn +"has listener now.");
+      alert(btn +"has listener now.");
     }
 
     // Called when a photo is successfully retrieved
@@ -99,7 +98,7 @@
       alert('Failed because: ' + message);
     }
     
-    function uploadPic(event){
+    function uploadPic(){
        alter("trying t upload");
        var options = new FileUploadOptions();
        options.fileKey="file";
@@ -132,7 +131,7 @@
         <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
         <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
         <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br><br>
-        <button id="uploadBtn">Upload Pic</button><br>
+        <button onclick="uploadPic();" id="uploadBtn">Upload Pic</button><br><br><br>
         
         <img style="display:none;width:120px;height:120px;" id="smallImage" src="" />
         <img style="display:none;" id="largeImage" src="" />
