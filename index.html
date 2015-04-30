@@ -101,8 +101,9 @@
     function uploadPic(){
        var options = new FileUploadOptions();
        options.fileKey="file";
-       options.fileName=imageString.substr(imageString.lastIndexOf('/')+1);
-       alert("uploading, name : "+options.fileName);
+       alert("uploading, name : "+imageString);
+       options.fileName= "test1";//imageString.substr(imageString.lastIndexOf('/')+1);
+
        options.mimeType="image/jpeg";
 
        var params = new Object();
