@@ -98,6 +98,7 @@
     }
     
     function uploadPic(){
+       alter("trying t upload");
        var options = new FileUploadOptions();
        options.fileKey="file";
        options.fileName=imageString.substr(imageString.lastIndexOf('/')+1);
@@ -115,11 +116,11 @@
     }
 
     function win(){
-        console.log("upload done.");
+        alert("upload done.");
     }
     
     function fail(){
-        console.log("uploading pic fails");
+        alert("uploading pic fails");
     }
     </script>
   </head>
