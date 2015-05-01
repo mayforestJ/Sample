@@ -19,12 +19,12 @@
 
     <!-- We'll include the Barcode plugin as an example -->
     <gap:plugin name="org.apache.cordova.camera" version="0.3.2"/> 
-    
-    <feature name="File">
-        <param name="ios-package" value="CDVFile" />
-    </feature>
-    <feature name="FileTransfer">
-        <param name="ios-package" value="CDVFileTransfer" />
-    </feature>
-
+    <platform name="ios">
+        <feature name="File">
+            <param name="ios-package" value="CDVFile" />
+        </feature>
+        <feature name="FileTransfer">
+            <param name="ios-package" value="CDVFileTransfer" />
+        </feature>
+    </platform>
 </widget>
