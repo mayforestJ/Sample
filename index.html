@@ -111,12 +111,13 @@
        var params = new Object();
        params.value1 = "test";
        params.value2 = "param";
+       options.chunkedMode = false;
 
        options.params = {};   //params;
        
        var ft = new FileTransfer();
        alert("FileTransferError.INVALID_URL_ERR: "+FileTransferError.INVALID_URL_ERR);
-       ft.upload(imageString, "http://www.springbaystudio.com/tree/upload.php", win, fail, options);
+       ft.upload(imageString, "http://www.springbaystudio.com/tree/upload.php", win, fail, options, true);
        
     }
 
