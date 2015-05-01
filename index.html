@@ -125,7 +125,10 @@
     }
     
     function fail(error){
-        alert("uploading pic fails: err code :"+ error.code);// +", source : "+error.source + ", target : "+error.target +", http_status : "+error.http_status);
+        //alert("uploading pic fails: err code :"+ error.code);// +", source : "+error.source + ", target : "+error.target +", http_status : "+error.http_status);
+        alert("An error has occurred: Code = " + error.code);
+        console.log("upload error source " + error.source);
+        console.log("upload error target " + error.target);
     }
     </script>
   </head>
