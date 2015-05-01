@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <platform name="ios">
+        <feature name="File">
+            <param name="ios-package" value="CDVFile" />
+        </feature>
+        <feature name="FileTransfer">
+            <param name="ios-package" value="CDVFileTransfer" />
+        </feature>
+    </platform>
+</xml>	
