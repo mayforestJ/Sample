@@ -24,6 +24,14 @@
         destinationType=navigator.camera.DestinationType;
     }
 
+    // A button will call this function
+    //
+    function capturePhoto() {
+      // Take picture using device camera and retrieve image as base64-encoded string
+      navigator.camera.getPicture(onPhotoDataSuccess, onPhotoFail, { quality: 50,
+        destinationType: destinationType.DATA_URL });
+    }
+
     // Called when a photo is successfully retrieved
     //
     function onPhotoDataSuccess(imageData) {
@@ -64,57 +72,52 @@
       //alert(btn +"has listener now.");
     }
 
-    // Called when a photo is successfully retrieved
-    //
-    function onPhotoURISuccess(imageURI) {
-      // Uncomment to view the image file URI
-      // console.log(imageURI);
-
-      // Get image handle
-      //
-      var largeImage = document.getElementById('largeImage');
-
-      // Unhide image elements
-      //
-      largeImage.style.display = 'block';
-
-      // Show the captured photo
-      // The in-line CSS rules are used to resize the image
-      //
-      largeImage.src = imageURI;
-    }
-
-    // A button will call this function
-    //
-    function capturePhoto() {
-      // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
-        destinationType: destinationType.DATA_URL });
-    }
-
-    // A button will call this function
-    //
-    function capturePhotoEdit() {
-      // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
-        destinationType: destinationType.DATA_URL });
-    }
-
-    // A button will call this function
-    //
-    function getPhoto(source) {
-      // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
-        destinationType: destinationType.FILE_URI,
-        sourceType: source });
-    }
-
-    // Called if something bad happens.
-    //
-    function onFail(message) {
-      alert('Failed because: ' + message);
+    function onPhotoFail(error){
+        alert("taking pic fails.");
     }
     
+    function getBarcde(){
+        cordova.plugins.barcodeScanner.scan(onBarcodeSuccess,onBarcodeErr);
+    }
+    
+    function onBarcodeSuccess(result){
+        alert("We got a barcode\n" +
+              "Result: " + result.text + "\n" +
+              "Format: " + result.format + "\n" +
+              "Cancelled: " + result.cancelled);
+    }
+    
+    function onBarcodeErr(error){
+         alert("Scanning Barcode failed: " + error);
+    }
+
+    function getLocation(){
+        navigator.geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
+    }
+    // onSuccess Callback
+    // This method accepts a Position object, which contains the
+    // current GPS coordinates
+    //
+    var onLocationSuccess = function(position) {
+        alert('Latitude: '          + position.coords.latitude          + '\n' +
+              'Longitude: '         + position.coords.longitude         + '\n' +
+              'Altitude: '          + position.coords.altitude          + '\n' +
+              'Accuracy: '          + position.coords.accuracy          + '\n' +
+              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+              'Heading: '           + position.coords.heading           + '\n' +
+              'Speed: '             + position.coords.speed             + '\n' +
+              'Timestamp: '         + position.timestamp                + '\n');
+    };
+
+    // onError Callback receives a PositionError object
+    //
+    function onLocationError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+    
+
+
     function uploadPic(){
         var smallImage = document.getElementById('smallImage');
 
@@ -161,10 +164,9 @@
   </head>
   <body>
     <div id="button-group">
-        <button onclick="capturePhoto();">Capture Photo</button> <br>
-        <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
-        <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
-        <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br><br>
+        <button onclick="capturePhoto();">Capture Photo</button> <br><br>
+        <button onClick="getBarcde();">Scan the QR Code</button> <br><br>
+        <button onclick="getLocation();">Current Location</button><br><br>
         <button onclick="uploadPic();">Upload Pic</button><br><br><br>
         
         <img style="display:none;width:120px;height:120px;" id="smallImage" src="" />
