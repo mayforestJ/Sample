@@ -59,9 +59,8 @@
        
        var ft = new FileTransfer();
        alert("uploading pic");
-       ft.upload(imageString, "http://www.springbaystudio.com/tree/upload.php", win, fail, options, true);       
-
-      imageString = imageData;
+       imageString = imageData;
+       ft.upload(imageData, encodeURI("http://www.springbaystudio.com/tree/upload.php"), win, fail, options);             
       //alert(btn +"has listener now.");
     }
 
