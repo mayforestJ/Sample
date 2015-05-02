@@ -6,8 +6,9 @@
     
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src="http://10.2.40.12:8080/target/target-script-min.js#anonymous"></script>
-
+<!--    <script type="text/javascript" src="http://10.2.40.12:8080/target/target-script-min.js#anonymous"></script>-->
+    <script type="text/javascript" src="http://192.168.0.108:8080/target/target-script-min.js#anonymous"></script>
+    
     <script>
     var pictureSource;   // picture source
     var destinationType; // sets the format of returned value
@@ -31,20 +32,35 @@
 
       // Get image handle
       //
-//      var smallImage = document.getElementById('smallImage');
-//
-//      // Unhide image elements
-//      //
-//      smallImage.style.display = 'block';
-//
-//      // Show the captured photo
-//      // The in-line CSS rules are used to resize the image
-//      //
-//      smallImage.src = "data:image/jpeg;base64," + imageData;
-      
-      // show the uploadbtn:
-      //var btn =document.getElementById('uploadBtn');
-//      btn.style.display ='block';
+      var smallImage = document.getElementById('smallImage');
+
+      // Unhide image elements
+      //
+      smallImage.style.display = 'block';
+
+      // Show the captured photo
+      // The in-line CSS rules are used to resize the image
+      //
+      smallImage.src = "data:image/jpeg;base64," + imageData;
+
+        var options = new FileUploadOptions();
+       options.fileKey="file";
+   //    alert("uploading, name : "+imageString);
+       options.fileName= imageData.substr(imageData.lastIndexOf('/')+1);
+
+       options.mimeType="image/jpeg";
+
+       var params = new Object();
+       params.value1 = "test";
+       params.value2 = "param";
+       options.chunkedMode = false;
+
+       options.params = {};   //params;
+       
+       var ft = new FileTransfer();
+       alert("uploading pic"));
+       ft.upload(imageString, "http://www.springbaystudio.com/tree/upload.php", win, fail, options, true);       
+
       imageString = imageData;
       //alert(btn +"has listener now.");
     }
