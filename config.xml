@@ -19,7 +19,8 @@
 
     <!-- We'll include the Barcode plugin as an example -->
     <gap:plugin name="org.apache.cordova.camera" version="0.3.2"/> 
-    <gap:plugin name="com.chanthu.evri.gcs-file-transfer" version="1.0.0" />
+<!--    <gap:plugin name="com.chanthu.evri.gcs-file-transfer" version="1.0.0" />-->
+    <gap:plugin name="org.apache.cordova.file-trasfer" />
     <gap:plugin name="com.phonegap.plugins.barcodescanner" version="2.2.0" />
     <gap:plugin name="org.apache.cordova.geolocation" version="0.3.10" />
 <!--    <gap:config-file platform="ios" parent="/widget/plugins">
